@@ -569,8 +569,9 @@ function startRealtime() {
       for (const catId of Object.keys(newR)) {
         if (oldR[catId]) continue;
         const pick = playerPicks[catId];
-        const fav  = typeof pick === 'object' ? pick?.fav  : pick;
-        const pref = typeof pick === 'object' ? pick?.pref : undefined;
+        const isObj = pick !== null && typeof pick === 'object';
+        const fav  = isObj ? pick.fav  : pick;
+        const pref = isObj ? pick.pref : undefined;
         const winner = newR[catId];
         const favWon  = fav  && fav  === winner;
         const prefWon = pref && pref === winner;
