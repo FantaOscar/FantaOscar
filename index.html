@@ -964,10 +964,7 @@ function renderPicks() {
     let scoreBadge = '';
     if (winner) {
       if (ptsTotal > 0) {
-        const parts = [];
-        if (ptsFav  > 0) parts.push(`🏆 +${ptsFav}pt`);
-        if (ptsPref > 0) parts.push(`❤️ +${ptsPref}pt`);
-        scoreBadge = `<span style="color:var(--green);font-weight:700;font-size:13px">✓ ${parts.join(' ')}</span>`;
+        scoreBadge = `<span style="color:var(--green);font-weight:700;font-size:13px">✓ +${ptsTotal}pt</span>`;
       } else {
         scoreBadge = `<span style="color:var(--red);font-size:13px">✗ 0pt</span>`;
       }
@@ -1004,6 +1001,7 @@ function renderCategoryCard(catId) {
   const winner = results[cat.id];
   const favWon  = winner && fav  && fav  === winner;
   const prefWon = winner && pref && pref === winner;
+  if (winner) console.log('[score debug]', cat.id, { p, fav, pref, winner, favWon, prefWon });
   const cardEl = document.getElementById('cat-card-' + catId);
   if (!cardEl) return;
 
@@ -1015,10 +1013,7 @@ function renderCategoryCard(catId) {
       const ptsPref = prefWon ? prefScore(catId, pref) : 0;
       const ptsTotal = ptsFav + ptsPref;
       if (ptsTotal > 0) {
-        const parts = [];
-        if (ptsFav  > 0) parts.push(`🏆 +${ptsFav}pt`);
-        if (ptsPref > 0) parts.push(`❤️ +${ptsPref}pt`);
-        scoreEl.innerHTML = `<span style="color:var(--green);font-weight:700;font-size:13px">✓ ${parts.join(' ')}</span>`;
+        scoreEl.innerHTML = `<span style="color:var(--green);font-weight:700;font-size:13px">✓ +${ptsTotal}pt</span>`;
       } else {
         scoreEl.innerHTML = `<span style="color:var(--red);font-size:13px">✗ 0pt</span>`;
       }
