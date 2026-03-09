@@ -560,6 +560,7 @@ function startRealtime() {
     if (state.activeTab === 'lb') renderLeaderboard();
     if (state.activeTab === 'picks' && oldResults !== newResults) renderPicks();
     if (state.activeTab === 'films') renderFilms();
+    else renderFilmGroupStats(); // aggiorna stats anche se il tab non è aperto
 
     // 🎉 Confetti se il giocatore ha indovinato un nuovo vincitore
     if (oldResults !== newResults && state.player && !state.isAdmin) {
