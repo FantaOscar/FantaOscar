@@ -1273,6 +1273,7 @@ function renderFilmGroupStats() {
   const el = document.getElementById('film-group-stats');
   if (!el) return;
   const allSeen = state.gameData.seen || {};
+  const totalPlayers = Object.keys(state.gameData.players || {}).length;
   const players = Object.keys(allSeen);
   if (players.length === 0) { el.innerHTML = ''; return; }
   const counts = {};
@@ -1301,7 +1302,7 @@ function renderFilmGroupStats() {
           return `<div style="margin-top:10px">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
               <div style="font-size:13px;font-weight:600;color:var(--text)">${medals[i]} ${x.film.title}</div>
-              <div style="font-size:12px;font-weight:700;color:var(--gold)">${x.count}/${players.length}</div>
+              <div style="font-size:12px;font-weight:700;color:var(--gold)">${x.count}/${totalPlayers}</div>
             </div>
             <div class="progress-wrap"><div class="progress-fill" style="width:${pct}%;background:linear-gradient(90deg,var(--gold2),var(--gold))"></div></div>
           </div>`;
