@@ -701,6 +701,8 @@ const PREF_RANKINGS = {
 };
 
 function prefScore(catId, nominee) {
+  // Eccezione: Miglior Film vale sempre 3pt fissi se il preferito vince
+  if (catId === 'best_picture') return 3;
   const ranking = PREF_RANKINGS[catId];
   if (!ranking) return 99;
   // Cerca match esatto o parziale
